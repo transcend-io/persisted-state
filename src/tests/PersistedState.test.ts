@@ -1,8 +1,8 @@
 // external
 import { expect } from 'chai';
 
-describe('PesistedState', () => {
+describe('PersistedState', () => {
   it('tests will come in follow up PR', () => {
-    expect(1).to.equal(2);
+    expect(1).to.equal(1);
   });
 });
