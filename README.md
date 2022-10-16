@@ -11,7 +11,7 @@
 
 ## Overview
 
-This package contains utilities for overriding require statement to support aliases, functions like `apply` and `decodeCodec` as well as generic typescript types useful in any typescript project.
+This package contains a class that makes it easy to read/write JSON data from a file on disk. It's built using io-ts to provide runtime and static type validation.
 
 ## Typescript Build
 
