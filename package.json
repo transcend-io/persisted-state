@@ -2,7 +2,7 @@
   "author": "Transcend Inc.",
   "name": "@transcend-io/persisted-state",
   "description": "A type-friendly class that makes it easier to read/write state from local disk.",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "homepage": "https://github.com/transcend-io/persisted-state",
   "repository": {
     "type": "git",
@@ -24,11 +24,15 @@
     "test": "yarn pnpify mocha './src/**/*.test.ts'"
   },
   "dependencies": {
+    "@transcend-io/type-utils": "^1.0.5",
+    "@types/node": "^18.11.0",
     "fp-ts": "^2.11.8",
-    "io-ts": "^2.2.16"
+    "io-ts": "^2.2.16",
+    "mkdirp": "^1.0.4"
   },
   "devDependencies": {
     "@types/chai": "^4.3.0",
+    "@types/mkdirp": "^1.0.2",
     "@types/mocha": "^9.1.0",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",

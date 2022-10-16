@@ -13,6 +13,48 @@
 
 This package contains a class that makes it easy to read/write JSON data from a file on disk. It's built using io-ts to provide runtime and static type validation.
 
+## Example
+
+```ts
+// A sample io-ts validation
+const TestCodec = t.type({
+  timestamp: t.string,
+  time: t.number,
+  type: t.type({
+    fish: t.partial({
+      dog: t.string,
+    }),
+  }),
+  content: t.string,
+});
+
+// Create a new state before each test
+const testFile = join(__dirname, 'test.json');
+const state = new PersistedState(testFile, TestCodec, {
+  timestamp: '',
+  time: 2,
+  type: {
+    fish: {
+      dog: 'dog',
+    },
+  },
+  content: '',
+});
+
+// get values
+const twoDeep = state.getValue('type', 'fish'); // { dog: 'dog' }
+const threeDeep = state.getValue('type', 'fish', 'dog'); // 'dog'
+
+// set values
+state.setValue(3, 'time');
+state.setValue('howdy', 'content');
+state.setValue({ dog: 'moose' }, 'type', 'fish');
+
+// save and wipe
+state.save();
+state.wipe();
+```
+
 ## Typescript Build
 
 Build this package only:

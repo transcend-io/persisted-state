@@ -15,6 +15,9 @@
     /* Strict Type-Checking Options */
     "strict": true,
 
+    /** mkdirp has a conflict */
+    "skipLibCheck": true,
+
     /* Additional Checks */
     "noUnusedLocals": true,
     "noImplicitReturns": true,
@@ -30,7 +33,7 @@
     "outDir": "build",
     "tsBuildInfoFile": "./build/tsbuildinfo",
     "rootDir": "src",
-    "types": ["mocha"]
+    "types": ["mocha", "node"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "build"],
