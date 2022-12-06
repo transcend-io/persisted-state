@@ -54,7 +54,10 @@ export class PersistedState<TStateCodec extends t.Any> {
     mkdirp.sync(dirname(this.saveStatePath));
 
     // Save to file
-    writeFileSync(this.saveStatePath, JSON.stringify(this.state, null, 2));
+    writeFileSync(
+      this.saveStatePath,
+      `${JSON.stringify(this.state, null, 2)}\n`,
+    );
   }
 
   /**

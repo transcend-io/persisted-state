@@ -2,7 +2,7 @@
   "author": "Transcend Inc.",
   "name": "@transcend-io/persisted-state",
   "description": "A type-friendly class that makes it easier to read/write state from local disk.",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "homepage": "https://github.com/transcend-io/persisted-state",
   "repository": {
     "type": "git",
