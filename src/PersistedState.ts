@@ -6,7 +6,6 @@ import { decodeCodec } from '@transcend-io/type-utils';
 
 /**
  * The value of T[S], if it's not null/undefined
- *
  * @see https://github.com/pimterry/typesafe-get/blob/master/index.ts
  */
 export type Prop<T, S extends keyof T> = NonNullable<T[S]>;
@@ -23,7 +22,6 @@ export class PersistedState<TStateCodec extends t.Any> {
 
   /**
    * Create a new release
-   *
    * @param saveStatePath - The path to the env file that persists what step of deploy we are on
    * @param stateCodec - The codec to validate the store shape
    * @param defaultState - The default state when initializing for the first time
@@ -107,7 +105,6 @@ export class PersistedState<TStateCodec extends t.Any> {
 
   /**
    * Fetch a value form the release state
-   *
    * @param props - Grab deeply nested values
    * @returns The value of the state param
    */
@@ -173,7 +170,6 @@ export class PersistedState<TStateCodec extends t.Any> {
 
   /**
    * Set the value of a parameter on a certain step
-   *
    * @param valueToSet - The value to set (if a list, can be a single list item)
    * @param props - Set deeply nested values
    */
