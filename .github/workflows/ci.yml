@@ -10,6 +10,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 18.x
+      - run: yarn
       - name: Build the typescript code
         run: yarn build
       - uses: actions/upload-artifact@main
@@ -22,7 +23,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: [12.x, 18.x]
+        node-version: [18.x]
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
