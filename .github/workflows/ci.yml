@@ -74,6 +74,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '18.x'
+      - run: yarn
       - name: Configure NPM authentication
         run: |
           yarn config set npmAlwaysAuth true
@@ -95,6 +96,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '18.x'
+      - run: yarn
       - name: Configure Github Packages authentication
         run: |
           yarn config set npmAlwaysAuth true
