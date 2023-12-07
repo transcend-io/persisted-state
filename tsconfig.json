@@ -14,8 +14,6 @@
 
     /* Strict Type-Checking Options */
     "strict": true,
-
-    /** mkdirp has a conflict */
     "skipLibCheck": true,
 
     /* Additional Checks */
@@ -26,14 +24,13 @@
     /* Module Resolution Options */
     "moduleResolution": "node",
     "baseUrl": ".",
-    "typeRoots": ["@types", "node_modules/@types"],
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "outDir": "build",
     "tsBuildInfoFile": "./build/tsbuildinfo",
     "rootDir": "src",
-    "types": ["mocha", "node"]
+    "types": ["mocha"]
   },
   "include": ["src"],
   "exclude": ["node_modules", "build"],
