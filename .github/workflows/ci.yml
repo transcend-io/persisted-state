@@ -63,6 +63,10 @@ jobs:
   build-to-npm:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      packages: write
     needs:
       - run-mocha
       - run-depcheck
@@ -71,16 +75,17 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v6
         with:
           node-version: '18.x'
+      - name: Set npm to version that supports trusted publishers
+        run: npm install -g npm@11.5.1
+        shell: bash
       - run: yarn
-      - name: Configure NPM authentication
-        run: |
-          yarn config set npmAlwaysAuth true
-          yarn config set npmAuthToken ${{ secrets.NPM_TOKEN }}
       - name: Publish to yarn/npm
         run: yarn npm publish
+        env:
+          NODE_AUTH_TOKEN: ""
 
   build-to-github-packages:
     if: github.ref == 'refs/heads/main'
