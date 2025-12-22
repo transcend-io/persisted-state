@@ -1,15 +1,20 @@
 name: ci
 on: push
 
+permissions:
+  id-token: write
+  contents: read
+  packages: write
+
 jobs:
   build-and-upload-artifacts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 18.x
+      - name: Use Node.js 22.x
         uses: actions/setup-node@v1
         with:
-          node-version: 18.x
+          node-version: 22.x
       - run: yarn
       - name: Build the typescript code
         run: yarn build
@@ -23,7 +28,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
-        node-version: [18.x]
+        node-version: [22.x, 24.x]
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
@@ -37,10 +42,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 18.x
+      - name: Use Node.js 22.x
         uses: actions/setup-node@v1
         with:
-          node-version: 18.x
+          node-version: 22.x
       - run: yarn
       - run: yarn depcheck
 
@@ -51,10 +56,10 @@ jobs:
         with:
           fetch-depth: 100 # need the history to do a changed files check below (source, origin)
       - uses: actions/setup-python@v2
-      - name: Use Node.js 18.x
+      - name: Use Node.js 22.x
         uses: actions/setup-node@v1
         with:
-          node-version: 18.x
+          node-version: 22.x
       - run: yarn
       - uses: pre-commit/action@v3.0.1
         with:
@@ -63,10 +68,6 @@ jobs:
   build-to-npm:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-      packages: write
     needs:
       - run-mocha
       - run-depcheck
@@ -77,14 +78,11 @@ jobs:
         uses: actions/checkout@v2
       - uses: actions/setup-node@v6
         with:
-          node-version: '18.x'
+          node-version: '22.x'
           registry-url: 'https://registry.npmjs.org'
-      - name: Set npm to version that supports trusted publishers
-        run: npm install -g npm@11.5.1
-        shell: bash
       - run: yarn
       - name: Publish to yarn/npm
-        run: yarn npm publish
+        run: yarn npm publish --provenance
 
   build-to-github-packages:
     if: github.ref == 'refs/heads/main'
@@ -99,7 +97,7 @@ jobs:
         uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: '18.x'
+          node-version: '22.x'
       - run: yarn
       - name: Configure Github Packages authentication
         run: |
